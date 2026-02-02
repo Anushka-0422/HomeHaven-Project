@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { comment } = require("postcss");
 const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
