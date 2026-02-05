@@ -8,14 +8,14 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
+  cloudinary,
+  params: async (req, file) => ({
     folder: "homehaven_DEV",
-    allowedFormats: ["png", "jpg", "jpeg"],
-  },
+    allowed_formats: ["png", "jpg", "jpeg"],
+  }),
 });
 
-module.exports = { 
-    cloudinary, 
-    storage 
+module.exports = {
+  cloudinary,
+  storage,
 };
