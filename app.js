@@ -19,7 +19,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const Mongo_URL = "mongodb://127.0.0.1:27017/HomeHaven";
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/homehaven";
 
 main()
   .then(() => {
@@ -30,7 +30,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(Mongo_URL);
+  await mongoose.connect(dbUrl);
 }
 
 app.set("view engine", "ejs");
@@ -102,6 +102,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
 });
 
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
