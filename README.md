@@ -1,145 +1,184 @@
 # 🏡 HomeHaven – Full-Stack Travel Accommodation Platform
 
-HomeHaven is a full-stack web application inspired by modern accommodation platforms, designed to provide a seamless experience for users to explore, review, and manage travel stays.
-
-The platform supports both users and property owners, enabling listing management, booking interactions, and dynamic location visualization.
+A full-stack Node.js/Express application for discovering and managing travel accommodations. Built using the MVC architecture, HomeHaven supports user authentication, CRUD operations for listings and reviews, image uploads via Cloudinary, interactive maps with Mapbox, and robust server-side validation.
 
 ---
 
-## 🌟 Key Features
+## ⚡ Overview
 
-* 🔐 **Authentication & Authorization**
-  Secure user login/signup using Passport.js with session management.
+**Tech Stack:** Node.js · Express · MongoDB (Mongoose) · EJS · Passport.js · Cloudinary · Mapbox
 
-* 🏠 **Property Listings (CRUD)**
-  Owners can create, update, and delete listings with images and details.
+### Key Features:
 
-* ✍️ **Reviews System (CRUD)**
-  Users can add and delete reviews for listed properties.
-
-* 🗺️ **Interactive Maps Integration**
-  Location visualization using Mapbox for better user experience.
-
-* ☁️ **Image Upload & Management**
-  Integrated Cloudinary for storing and managing listing images.
-
-* ✅ **Data Validation & Security**
-  Server-side validation and schema enforcement for reliability.
-
-* ⚠️ **Error Handling Middleware**
-  Centralized error handling for improved backend stability.
+* User authentication with sessions (Passport.js)
+* CRUD operations for listings and reviews
+* Image uploads and management using Cloudinary
+* Interactive maps integration for location visualization
+* Owner-based authorization (edit/delete control)
+* Flash messages and centralized error handling
+* Server-side validation for secure data handling
 
 ---
 
-## 🛠️ Tech Stack
+## 🧩 Project Structure (MVC)
 
-### ⚙️ Backend
+* **Model:** `/models/` — Mongoose schemas (Users, Listings, Reviews)
+* **View:** `/views/` — EJS templates and layouts
+* **Controller:** `/controllers/` — Business logic and route handling
 
-* Node.js
-* Express.js
-* MongoDB (Mongoose ODM)
+### Other Important Directories:
 
-### 🎨 Frontend
-
-* EJS (Templating Engine)
-* Bootstrap
-* JavaScript
-
-### 🔧 Tools & Services
-
-* Passport.js (Authentication)
-* Multer (File Uploads)
-* Cloudinary (Cloud Storage)
-* Mapbox (Maps Integration)
+* `/routes/` — Express route definitions
+* `/middleware/` — Authentication & authorization logic
+* `/utils/` — Helpers (validation, Cloudinary config, error classes)
+* `/public/` — Static assets (CSS, JS, images)
+* `/init/` — Database seeding/setup scripts
+* `app.js` — Main application entry point
 
 ---
 
-## 🏗️ Architecture
+## 🚀 Getting Started (Local)
 
-* MVC (Model–View–Controller) design pattern
-* Modular and scalable backend structure
-* RESTful routing and organized middleware usage
+### Prerequisites
 
----
-
-## 🚧 Project Status
-
-* ✅ Core features fully implemented
-* ✅ Backend tested and working in local environment
-* ⚠️ Deployment in progress (currently resolving environment/configuration issues)
+* Node.js (v16+)
+* npm or yarn
+* MongoDB (local or MongoDB Atlas)
+* Cloudinary & Mapbox accounts (recommended)
 
 ---
 
-## ⚙️ Installation & Setup
-
-### 1. Clone the repository
+## ⚙️ Installation
 
 ```bash
+# Clone the repository
 git clone https://github.com/your-username/homehaven.git
-```
 
-### 2. Install dependencies
+# Navigate to project directory
+cd homehaven
 
-```bash
+# Install dependencies
 npm install
 ```
 
-### 3. Setup environment variables
+---
 
-Create a `.env` file and configure:
+## 🔐 Environment Setup
+
+Create a `.env` file in the root directory:
 
 ```env
-CLOUDINARY_KEY=your_key
-CLOUDINARY_SECRET=your_secret
-MAPBOX_TOKEN=your_token
-SESSION_SECRET=your_secret
+MONGO_URI=mongodb://127.0.0.1:27017/homehaven
+PORT=3000
+SESSION_SECRET=your-secret-key
+
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_KEY=your-cloud-key
+CLOUDINARY_SECRET=your-cloud-secret
+
+MAPBOX_TOKEN=your-mapbox-token
 ```
 
-### 4. Run the application
+---
+
+## 🧠 Run the App
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Production
 
 ```bash
 npm start
 ```
 
----
-
-## 🚀 Upcoming Enhancements
-
-* 💳 Payment gateway integration
-* ⭐ Ratings & advanced review system
-* 🔎 Advanced search & filtering
-* 🌐 Cloud deployment (Render / AWS / Vercel)
+App will run on:
+👉 http://localhost:3000
 
 ---
 
-## 📸 Screenshots / Demo
+## 🗺️ Routes Summary
 
-*(Add UI screenshots or a demo video here)*
+### Listings
 
----
-
-## 💡 Key Learnings
-
-* Designed and implemented a full-stack system using MVC architecture
-* Gained hands-on experience with authentication, sessions, and cookies
-* Improved understanding of database relationships and schema design
-* Learned real-world debugging and error handling techniques
-* Built production-style backend with modular structure
-
----
-
-## 🔗 Repository
-
-GitHub: https://github.com/your-username/homehaven
+| Method | Path               | Description          | Auth  |
+| ------ | ------------------ | -------------------- | ----- |
+| GET    | /listings          | View all listings    | No    |
+| GET    | /listings/new      | Create listing form  | Yes   |
+| POST   | /listings          | Add new listing      | Yes   |
+| GET    | /listings/:id      | View listing details | No    |
+| GET    | /listings/:id/edit | Edit listing form    | Owner |
+| PUT    | /listings/:id      | Update listing       | Owner |
+| DELETE | /listings/:id      | Delete listing       | Owner |
 
 ---
 
-## 🤝 Feedback
+### Reviews
 
-Feedback and suggestions are welcome! Feel free to open issues or contribute to the project.
+| Method | Path                            | Description   | Auth         |
+| ------ | ------------------------------- | ------------- | ------------ |
+| POST   | /listings/:id/reviews           | Add review    | Yes          |
+| DELETE | /listings/:id/reviews/:reviewId | Delete review | Owner/Author |
+
+---
+
+### Users
+
+| Method | Path      | Description   | Auth |
+| ------ | --------- | ------------- | ---- |
+| GET    | /register | Register form | No   |
+| POST   | /register | Create user   | No   |
+| GET    | /login    | Login form    | No   |
+| POST   | /login    | Login user    | No   |
+| GET    | /logout   | Logout user   | Yes  |
+
+---
+
+## 🚧 Project Status
+
+* ✅ Core features implemented
+* ✅ Fully functional in local environment
+* ⚠️ Deployment in progress (environment/configuration issues being resolved)
+
+---
+
+## 🧰 Troubleshooting
+
+| Issue                    | Fix                                        |
+| ------------------------ | ------------------------------------------ |
+| MongoDB connection error | Verify `MONGO_URI` and database status     |
+| Cloudinary upload fails  | Check credentials in `.env`                |
+| Map not loading          | Ensure valid `MAPBOX_TOKEN`                |
+| Session issues           | Verify `SESSION_SECRET` and session config |
+
+---
+
+## 🤝 Contributing
+
+* Fork the repository
+* Create a new feature branch
+* Commit and test your changes
+* Submit a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👤 Author
+
+**Anushka Bhosale**
+
+For feedback or suggestions, feel free to open an issue or connect via GitHub.
 
 ---
 
 ## 📌 Note
 
-This project reflects a practical implementation of real-world system design and backend development concepts. Deployment is currently in progress and will be available soon.
+HomeHaven is built as a production-style full-stack application focusing on real-world backend architecture, authentication, and scalable design. Deployment is currently in progress and will be available soon.
