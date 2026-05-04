@@ -42,7 +42,7 @@ A full-stack Node.js/Express application for discovering and managing travel acc
 ### Prerequisites
 
 * Node.js (v16+)
-* npm or yarn
+* npm 
 * MongoDB (local or MongoDB Atlas)
 * Cloudinary & Mapbox accounts (recommended)
 
@@ -52,10 +52,7 @@ A full-stack Node.js/Express application for discovering and managing travel acc
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/homehaven.git
-
-# Navigate to project directory
-cd homehaven
+git clone: https://github.com/Anushka-0422/HomeHaven-Project.git
 
 # Install dependencies
 npm install
@@ -83,17 +80,9 @@ MAPBOX_TOKEN=your-mapbox-token
 
 ## 🧠 Run the App
 
-### Development
+Start the server using nodemon:
 
-```bash
-npm run dev
-```
-
-### Production
-
-```bash
-npm start
-```
+nodemon app.js
 
 App will run on:
 👉 http://localhost:8080/listings
@@ -182,3 +171,9 @@ For feedback or suggestions, feel free to open an issue or connect via GitHub.
 ## 📌 Note
 
 HomeHaven is built as a production-style full-stack application focusing on real-world backend architecture, authentication, and scalable design. Deployment is currently in progress and will be available soon.
+
+---
+
+## ⚡ One more suggestion (startup-level polish)
+
+Note: Ensure MongoDB service is running locally before starting the server.
