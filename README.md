@@ -1,6 +1,6 @@
 # 🏡 HomeHaven – Full-Stack Travel Accommodation Platform
 
-A full-stack Node.js/Express application for discovering and managing travel accommodations. Built using the MVC architecture, HomeHaven supports user authentication, CRUD operations for listings and reviews, image uploads via Cloudinary, interactive maps with Mapbox, and robust server-side validation.
+A full-stack Node.js/Express application for discovering and managing travel accommodations. Built using the MVC architecture, HomeHaven supports user authentication, CRUD operations for listings and reviews, image uploads via Cloudinary, interactive maps with Mapbox, and robust server-side validation. Inspired by platforms like Airbnb, HomeHaven simulates a real-world accommodation system with modern backend architecture.
 
 ---
 
@@ -53,6 +53,7 @@ A full-stack Node.js/Express application for discovering and managing travel acc
 ```bash
 # Clone the repository
 git clone: https://github.com/Anushka-0422/HomeHaven-Project.git
+cd HomeHaven-Project
 
 # Install dependencies
 npm install
@@ -81,8 +82,10 @@ MAPBOX_TOKEN=your-mapbox-token
 ## 🧠 Run the App
 
 Start the server using nodemon:
-
+```bash
 nodemon app.js
+```
+
 
 App will run on:
 👉 http://localhost:8080/listings
@@ -172,8 +175,6 @@ For feedback or suggestions, feel free to open an issue or connect via GitHub.
 
 HomeHaven is built as a production-style full-stack application focusing on real-world backend architecture, authentication, and scalable design. Deployment is currently in progress and will be available soon.
 
+ Note: Ensure MongoDB service is running locally before starting the server
 ---
-
-## ⚡ One more suggestion (startup-level polish)
-
-Note: Ensure MongoDB service is running locally before starting the server.
+ ## 📸 Demo
