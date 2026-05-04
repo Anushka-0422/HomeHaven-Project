@@ -69,7 +69,7 @@ Create a `.env` file in the root directory:
 
 ```env
 MONGO_URI=mongodb://127.0.0.1:27017/homehaven
-PORT=3000
+PORT=8080
 SESSION_SECRET=your-secret-key
 
 CLOUDINARY_CLOUD_NAME=your-cloud-name
